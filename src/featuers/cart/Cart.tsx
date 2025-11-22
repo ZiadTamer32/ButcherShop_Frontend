@@ -31,8 +31,10 @@ const Cart = ({
             >
               <div className="flex items-center gap-4">
                 <img
-                  src={`http://localhost:3000/photos/${cartItem.image}`}
-                  alt={cartItem.name}
+                  src={`${import.meta.env.VITE_IMAGE_UPLOAD_PATH}/${
+                    cartItem.image
+                  }`}
+                  alt={cartItem.name || "Product Image"}
                   className="w-16 h-16 object-cover rounded-md"
                   loading="lazy"
                 />

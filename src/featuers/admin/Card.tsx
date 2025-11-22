@@ -4,7 +4,7 @@ import EditProduct from "./EditProduct";
 import DeleteButton from "../../components/DeleteButton";
 
 const Card = ({ product }: { product: Product }) => {
-  const imgUrl = `http://localhost:3000/photos/${product.image}`;
+  const imgUrl = `${import.meta.env.VITE_IMAGE_UPLOAD_PATH}/${product.image}`;
   return (
     <div className="gradient-card rounded-xl overflow-hidden shadow-soft hover:shadow-medium transition-smooth border border-border">
       <div className="overflow-hidden">

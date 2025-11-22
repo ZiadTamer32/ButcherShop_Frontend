@@ -10,7 +10,7 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
   const [quantity, setQuantity] = useState(1);
   const { addCart } = useAddCart();
 
-  const imgUrl = `http://localhost:3000/photos/${product.image}`;
+  const imgUrl = `${import.meta.env.VITE_IMAGE_UPLOAD_PATH}/${product.image}`;
 
   const handleAddToCart = () => {
     if (quantity > 0) {
