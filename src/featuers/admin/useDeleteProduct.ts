@@ -11,7 +11,7 @@ const useDeleteProduct = () => {
       const res = await axios.delete(
         `${
           import.meta.env.VITE_BACKEND_URL
-        }/admin/soft-delete-product/${productID}`,
+        }/admin/hard-delete-product/${productID}`,
         { withCredentials: true }
       );
       return res.data;
