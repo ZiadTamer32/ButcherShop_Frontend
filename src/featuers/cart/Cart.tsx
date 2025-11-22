@@ -30,14 +30,6 @@ const Cart = ({
               className="flex flex-col sm:flex-row sm:items-center gap-4 bg-secondary/30 p-3 rounded-lg justify-between border border-border"
             >
               <div className="flex items-center gap-4">
-                <img
-                  src={`${import.meta.env.VITE_IMAGE_UPLOAD_PATH}/${
-                    cartItem.image
-                  }`}
-                  alt={cartItem.name || "Product Image"}
-                  className="w-16 h-16 object-cover rounded-md"
-                  loading="lazy"
-                />
                 <div className="flex flex-col gap-1">
                   <span className="font-semibold">{cartItem.name}</span>
                   <span className="text-sm text-gray-500 font-medium">
