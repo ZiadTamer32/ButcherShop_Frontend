@@ -42,6 +42,7 @@ const Cart = ({
                 <Button
                   size="icon"
                   variant="outline"
+                  disabled={cartItem.quantity >= 10 || !cartItem.isAvailable}
                   onClick={() =>
                     updateCart({
                       ...cartItem,
@@ -59,7 +60,7 @@ const Cart = ({
                 <Button
                   size="icon"
                   variant="outline"
-                  disabled={cartItem.quantity <= 0.25}
+                  disabled={cartItem.quantity <= 0.25 || !cartItem.isAvailable}
                   onClick={() =>
                     updateCart({
                       ...cartItem,
@@ -69,7 +70,6 @@ const Cart = ({
                 >
                   <Minus />
                 </Button>
-
                 <DeleteButton id={cartItem._id} />
               </div>
             </div>

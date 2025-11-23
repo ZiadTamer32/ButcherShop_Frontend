@@ -5,19 +5,29 @@ import { sliceText } from "../lib/utils";
 import type { CartItemLocalStorage } from "@/types";
 import useAddCart from "../featuers/cart/useAddCart";
 import toast from "react-hot-toast";
+import useGetCart from "../featuers/cart/useGetCart";
 
 export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
   const [quantity, setQuantity] = useState(1);
   const { addCart } = useAddCart();
+  const { getCart } = useGetCart();
 
   const imgUrl = `${import.meta.env.VITE_IMAGE_UPLOAD_PATH}/${product.image}`;
 
+  const cartItem = getCart?.find(
+    (item: CartItemLocalStorage) => item._id === product._id
+  );
+  const showQuantity = cartItem ? cartItem.quantity : 0;
+  const maxQuantity = 10 - showQuantity;
+
   const handleAddToCart = () => {
-    if (quantity > 0) {
+    if (quantity > 0 && product.isAvailable) {
       addCart(
         { ...product, quantity },
         {
-          onSuccess: () => toast.success(`تم إضافة ${product.name} إلى السلة`),
+          onSuccess: () => {
+            toast.success(`تم إضافة ${product.name} إلى السلة`);
+          },
         }
       );
     }
@@ -56,8 +66,10 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
             <Button
               size="icon"
               variant="outline"
-              onClick={() => setQuantity(quantity + 0.25)}
-              disabled={quantity >= 10 || !product.isAvailable}
+              onClick={() =>
+                setQuantity((prev) => Math.min(prev + 0.25, maxQuantity))
+              }
+              disabled={quantity >= maxQuantity || !product.isAvailable}
               className="h-7 w-7"
             >
               <Plus className="w-3 h-3" />
@@ -80,6 +92,12 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
         </div>
 
         <div className="relative flex-shrink-0">
+          {showQuantity > 0 && (
+            <span className="absolute -top-2 -right-2 bg-secondary rounded-full px-2 py-1 text-secondary-foreground text-xs font-bold shadow-md z-10">
+              {showQuantity}
+            </span>
+          )}
+
           {product.isAvailable ? (
             <img
               loading="lazy"
@@ -106,7 +124,9 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
       <Button
         size="sm"
         onClick={handleAddToCart}
-        disabled={quantity <= 0 || !product.isAvailable}
+        disabled={
+          quantity <= 0 || !product.isAvailable || quantity > maxQuantity
+        }
         className="text-xs w-full sm:hidden mt-2"
       >
         <ShoppingCart className="w-4 h-4" />
@@ -117,12 +137,20 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
       <div className="hidden sm:block w-full">
         <div className="overflow-hidden">
           {product.isAvailable ? (
-            <img
-              loading="lazy"
-              src={imgUrl || ""}
-              alt={product.name}
-              className="w-full h-64 object-cover hover:scale-105 transition-smooth"
-            />
+            <div className="relative overflow-hidden">
+              {showQuantity > 0 && (
+                <span className="absolute top-2 right-2 bg-secondary rounded-full px-3 py-1.5 text-secondary-foreground text-sm font-bold shadow-md z-10">
+                  {showQuantity}
+                </span>
+              )}
+
+              <img
+                loading="lazy"
+                src={imgUrl || ""}
+                alt={product.name}
+                className="w-full h-64 object-cover hover:scale-105 transition-smooth"
+              />
+            </div>
           ) : (
             <div className="relative overflow-hidden">
               <img
@@ -164,11 +192,14 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
             <Button
               className="basis-1/3"
               variant="outline"
-              disabled={quantity >= 10 || !product.isAvailable}
-              onClick={() => setQuantity(quantity + 0.25)}
+              disabled={quantity >= maxQuantity || !product.isAvailable}
+              onClick={() =>
+                setQuantity((prev) => Math.min(prev + 0.25, maxQuantity))
+              }
             >
               <Plus className="w-4 h-4" />
             </Button>
+
             <p className="basis-1/3 border rounded-md text-center">
               <span className="block mt-1.5">{quantity}</span>
             </p>
@@ -183,7 +214,9 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
           </div>
           <Button
             onClick={handleAddToCart}
-            disabled={quantity <= 0 || !product.isAvailable}
+            disabled={
+              quantity <= 0 || !product.isAvailable || quantity > maxQuantity
+            }
             className="w-full mt-4"
           >
             <ShoppingCart className="w-4 h-4" />

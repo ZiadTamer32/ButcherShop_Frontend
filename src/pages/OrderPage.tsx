@@ -168,7 +168,7 @@ const OrderPage = () => {
                 <div>
                   <p className="text-sm text-muted-foreground">ملاحظات</p>
                   <p className="font-semibold text-foreground">
-                    {specificOrder.additionalInfo ?? "لا يوجد ملاحظات"}
+                    {specificOrder.additionalInfo || "لا يوجد ملاحظات"}
                   </p>
                 </div>
               </div>

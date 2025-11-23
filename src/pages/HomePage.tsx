@@ -60,10 +60,10 @@ const Home = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-foreground mb-6">من نحن</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              جزارة أولاد حسن سيد الحداد هي واحدة من أعرق الجزارات في المنطقة.
-              نفخر بتقديم أفضل أنواع اللحوم الطازجة والمضمونة لعملائنا الكرام.
-              نحن نؤمن بأن الجودة ليست خياراً بل هي التزام، ولذلك نختار بعناية
-              فائقة كل قطعة لحم نقدمها لكم.
+              جزارة أولاد حسن الحداد هي واحدة من أفضل الجزارات في المجال. نفخر
+              بتقديم أفضل أنواع اللحوم الطازجة والمضمونة لعملائنا الكرام. نحن
+              نؤمن بأن الجودة ليست خياراً بل هي التزام، ولذلك نختار بعناية فائقة
+              كل قطعة لحم نقدمها لكم.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
               مع سنوات من الخبرة في مجال اللحوم، نحن نعرف ما يبحث عنه عملاؤنا
@@ -119,9 +119,13 @@ const Home = () => {
                 <h3 className="text-xl font-bold text-foreground mb-2">
                   البريد الإلكتروني
                 </h3>
-                <p className="text-muted-foreground">
+                <Link
+                  to="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=alhadadbutcher@gmail.com"
+                  target="_blank"
+                  className="underline text-primary transition-colors"
+                >
                   alhadadbutcher@gmail.com
-                </p>
+                </Link>
               </div>
               <div className="gradient-card p-6 rounded-xl shadow-soft">
                 <h3 className="text-xl font-bold text-foreground mb-2">
