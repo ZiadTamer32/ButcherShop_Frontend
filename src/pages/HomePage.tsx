@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { ShoppingBag, Award, Clock, Beef } from "lucide-react";
-import heroImage from "../assets/hero-butcher.jpg";
+import heroImage from "../assets/hero-butcher.webp";
 
 const Home = () => {
   const featureSections = [

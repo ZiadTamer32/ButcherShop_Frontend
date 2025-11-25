@@ -8,12 +8,35 @@
       content="جزارة أولاد حسن سيد الحداد - أجود أنواع اللحوم الطازجة والمضمونة. اطلب الآن واستمتع بجودة لا مثيل لها"
     />
     <meta name="author" content="جزارة أولاد حسن سيد الحداد" />
+    <link rel="icon" type="image/svg" href="/favicon.svg" />
+
+    <!-- Preconnect to Google Fonts (you already have this - good!) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Load Google Fonts asynchronously to avoid render blocking -->
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+
+    <!-- Fallback for browsers with JavaScript disabled -->
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- Add fallback font in case Cairo hasn't loaded yet -->
+    <style>
+      body {
+        font-family: "Cairo", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Tahoma, Arial, sans-serif;
+      }
+    </style>
   </head>
 
   <body>
