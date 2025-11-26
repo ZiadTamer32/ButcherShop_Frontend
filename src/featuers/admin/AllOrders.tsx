@@ -1,5 +1,5 @@
 import { Loader } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Button } from "../../components/ui/button";
 import { ceilPrice, sliceText } from "../../lib/utils";
 import type { Order, OrderItem } from "@/types";
@@ -58,10 +58,6 @@ const AllOrders = () => {
     setSearchParams({ tab: "orders", category: value, page: "1" });
   };
 
-  const reversedOrders = useMemo(() => {
-    return orders ? [...orders].reverse() : [];
-  }, [orders]);
-
   if (isPending) {
     return (
       <div className="flex items-center justify-center my-24">
@@ -93,9 +89,9 @@ const AllOrders = () => {
       </div>
 
       {/* All Orders */}
-      {reversedOrders.length > 0 ? (
+      {orders.length > 0 ? (
         <div className="space-y-6">
-          {reversedOrders?.map((order: Order) => (
+          {orders?.map((order: Order) => (
             <div
               key={order._id}
               className="gradient-card p-6 rounded-xl shadow-soft relative"
