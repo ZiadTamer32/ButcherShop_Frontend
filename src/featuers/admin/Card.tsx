@@ -6,7 +6,7 @@ import DeleteButton from "../../components/DeleteButton";
 const Card = ({ product }: { product: Product }) => {
   const imgUrl = `${import.meta.env.VITE_IMAGE_UPLOAD_PATH}/${product.image}`;
   return (
-    <div className="gradient-card rounded-xl overflow-hidden shadow-soft hover:shadow-medium transition-smooth border border-border">
+    <div className="flex flex-col justify-between gradient-card rounded-xl overflow-hidden shadow-soft hover:shadow-medium transition-smooth border border-border">
       <div className="overflow-hidden">
         <img
           loading="lazy"
@@ -15,7 +15,7 @@ const Card = ({ product }: { product: Product }) => {
           className="w-full h-64 object-cover hover:scale-105 transition-smooth"
         />
       </div>
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-1 justify-between">
         <h3
           className="text-xl font-bold text-foreground mb-2"
           title={product.name}

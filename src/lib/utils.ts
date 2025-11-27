@@ -20,7 +20,7 @@ export function getErrorsMessage(error: any) {
 
 export const sliceText = (text: string) => {
   const words = text?.split(" ");
-  return words?.length > 15 ? words?.slice(0, 15)?.join(" ") + "..." : text;
+  return words?.length > 10 ? words?.slice(0, 10)?.join(" ") + "..." : text;
 };
 
 export const zonesWithPrices = [

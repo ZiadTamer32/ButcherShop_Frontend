@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Button } from "../components/ui/button";
-import { Minus, Plus, ShoppingCart } from "lucide-react";
+import {
+  Minus,
+  Plus,
+  ShoppingCart,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { sliceText } from "../lib/utils";
 import type { CartItemLocalStorage } from "@/types";
 import useAddCart from "../featuers/cart/useAddCart";
@@ -9,6 +15,7 @@ import useGetCart from "../featuers/cart/useGetCart";
 
 export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
   const [quantity, setQuantity] = useState(1);
+  const [showMore, setShowMore] = useState(false);
   const { addCart } = useAddCart();
   const { getCart } = useGetCart();
 
@@ -33,6 +40,8 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
     }
   };
 
+  const isLongDescription = product.description.length > 60;
+
   return (
     <div
       className={`flex flex-col sm:flex-row gap-5 gradient-card p-4 sm:p-0 rounded-xl overflow-hidden shadow-soft hover:shadow-xl transition-smooth border border-border ${
@@ -45,18 +54,33 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
       <div className="flex sm:hidden items-center justify-between w-full">
         <div className="flex-1">
           <h3
-            className="text-lg font-bold text-foreground mb-1 cursor-pointer hover:whitespace-normal"
+            className="text-lg font-bold text-foreground mb-1"
             title={product.name}
           >
             {sliceText(product.name)}
           </h3>
 
-          <p
-            className="text-sm text-muted-foreground mb-2 cursor-pointer line-clamp-2 hover:line-clamp-none p-1"
-            title={product.description}
-          >
-            {sliceText(product.description)}
-          </p>
+          <div className="mb-2">
+            <p className="text-sm text-muted-foreground inline">
+              {showMore ? product.description : sliceText(product.description)}
+            </p>
+            {isLongDescription && (
+              <Button
+                onClick={() => setShowMore(!showMore)}
+                className="text-primary text-sm font-medium mr-1 inline-flex items-center hover:underline"
+              >
+                {showMore ? (
+                  <>
+                    عرض أقل <ChevronUp className="w-3 h-3 mr-0.5" />
+                  </>
+                ) : (
+                  <>
+                    عرض المزيد <ChevronDown className="w-3 h-3 mr-0.5" />
+                  </>
+                )}
+              </Button>
+            )}
+          </div>
 
           <div className="text-lg font-bold text-primary mb-2">
             {product.price} ج.م
@@ -134,7 +158,7 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
       </Button>
 
       {/* Desktop layout */}
-      <div className="hidden sm:block w-full">
+      <div className="hidden sm:flex w-full flex-col justify-between">
         <div className="overflow-hidden">
           {product.isAvailable ? (
             <div className="relative overflow-hidden">
@@ -166,7 +190,7 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
           )}
         </div>
 
-        <div className="p-5">
+        <div className="p-5 flex-1 flex flex-col justify-between">
           <h3
             className="text-xl font-bold text-foreground mb-2"
             title={product.name}
@@ -174,12 +198,28 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
             {sliceText(product.name)}
           </h3>
 
-          <p
-            className="text-muted-foreground mb-4 line-clamp-2"
-            title={product.description}
-          >
-            {sliceText(product.description)}
-          </p>
+          <div className="mb-4">
+            <p className="text-muted-foreground inline">
+              {showMore ? product.description : sliceText(product.description)}
+            </p>
+            {isLongDescription && (
+              <button
+                onClick={() => setShowMore(!showMore)}
+                className="text-primary text-sm font-medium mr-2 inline-flex items-center hover:underline"
+              >
+                {showMore ? (
+                  <>
+                    عرض أقل <ChevronUp className="w-4 h-4 mr-0.5" />
+                  </>
+                ) : (
+                  <>
+                    عرض المزيد <ChevronDown className="w-4 h-4 mr-0.5" />
+                  </>
+                )}
+              </button>
+            )}
+          </div>
+
           <div className="flex items-center justify-between mb-4">
             <span className="text-2xl font-bold text-primary">
               {product.price} ج.م

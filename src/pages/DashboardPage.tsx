@@ -7,7 +7,7 @@ import AllProducts from "../featuers/admin/AllProducts";
 import useUser from "../featuers/admin/useUser";
 import useLogout from "../featuers/admin/useLogout";
 import Spinner from "../components/Spinner";
-// import LoginPage from "./LoginPage";
+import Stats from "../featuers/admin/Stats";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -70,7 +70,8 @@ const DashboardPage = () => {
           )}
         </Button>
       </div>
-
+      {/* Stats */}
+      <Stats />
       {/* Tabs */}
       <div
         className="w-full sm:w-auto sm:max-w-md bg-gray-100 p-2 rounded-md flex gap-4 justify-between items-center text-center"
