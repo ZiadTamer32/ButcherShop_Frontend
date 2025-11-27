@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "../components/ui/button";
 import { ShoppingBag } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -39,6 +40,11 @@ const ConfirmPage = () => {
   const { createOrder, isCreating } = useCreateOrder();
 
   const selectedZone = watch("zone");
+
+  // Disable Button
+  const formValues = watch();
+  const { additionalInfo, ...requiredFields } = formValues;
+  const isDisabled = Object.values(requiredFields).some((ele) => !ele);
 
   const orderPrice = useMemo(
     () =>
@@ -190,6 +196,7 @@ const ConfirmPage = () => {
                   type="button"
                   className="w-full md:w-40 font-semibold"
                   onClick={() => setIsOpen(true)}
+                  disabled={isDisabled}
                 >
                   تأكيد الطلب
                 </Button>
