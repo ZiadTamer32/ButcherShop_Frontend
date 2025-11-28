@@ -47,3 +47,16 @@ export interface Order {
   totalPrice: number;
   createdAt?: string;
 }
+
+export interface ProductCardProps {
+  product: CartItemLocalStorage;
+  quantity: number;
+  setQuantity: (value: number | ((prev: number) => number)) => void;
+  setShowMore: (value: boolean | ((prev: boolean) => boolean)) => void;
+  handleAddToCart: () => void;
+  imgUrl: string;
+  showQuantity: number;
+  maxQuantity: number;
+  showMore: boolean;
+  isLongDescription: boolean;
+}
