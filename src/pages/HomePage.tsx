@@ -45,7 +45,10 @@ const Home = () => {
               سنوات
             </p>
             <Link to="/products">
-              <Button className="gap-3 font-bold text-lg">
+              <Button
+                aria-label="Go to products"
+                className="gap-3 font-bold text-lg"
+              >
                 <ShoppingBag className="w-5 h-5" />
                 تصفح المنتجات
               </Button>

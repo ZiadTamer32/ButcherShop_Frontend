@@ -62,6 +62,7 @@ const MobileCard = ({
             <Button
               size="icon"
               variant="outline"
+              aria-label="Increase Quantity"
               onClick={() =>
                 setQuantity((prev) => Math.min(prev + 0.25, maxQuantity))
               }
@@ -78,6 +79,7 @@ const MobileCard = ({
             <Button
               size="icon"
               variant="outline"
+              aria-label="Decrease Quantity"
               disabled={quantity <= 0.25 || !product.isAvailable}
               onClick={() => setQuantity(Math.max(0.25, quantity - 0.25))}
               className="h-7 w-7"
@@ -119,6 +121,7 @@ const MobileCard = ({
 
       <Button
         size="sm"
+        aria-label="Add to cart"
         onClick={handleAddToCart}
         disabled={
           quantity <= 0 || !product.isAvailable || quantity > maxQuantity

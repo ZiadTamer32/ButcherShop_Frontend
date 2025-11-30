@@ -96,6 +96,7 @@ const DesktopCard = ({
           <Button
             className="basis-1/3"
             variant="outline"
+            aria-label="Increase Quantity"
             disabled={quantity >= maxQuantity || !product.isAvailable}
             onClick={() =>
               setQuantity((prev) => Math.min(prev + 0.25, maxQuantity))
@@ -111,6 +112,7 @@ const DesktopCard = ({
             disabled={quantity <= 0.25 || !product.isAvailable}
             className="basis-1/3"
             variant="outline"
+            aria-label="Decrease Quantity"
             onClick={() => setQuantity(Math.max(0.25, quantity - 0.25))}
           >
             <Minus className="w-4 h-4" />
@@ -118,6 +120,7 @@ const DesktopCard = ({
         </div>
         <Button
           onClick={handleAddToCart}
+          aria-label="Add to cart"
           disabled={
             quantity <= 0 || !product.isAvailable || quantity > maxQuantity
           }

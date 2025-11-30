@@ -42,6 +42,7 @@ const Cart = ({
                 <Button
                   size="icon"
                   variant="outline"
+                  aria-label="Increase Quantity"
                   disabled={cartItem.quantity >= 10 || !cartItem.isAvailable}
                   onClick={() =>
                     updateCart({
@@ -60,6 +61,7 @@ const Cart = ({
                 <Button
                   size="icon"
                   variant="outline"
+                  aria-label="Decrease Quantity"
                   disabled={cartItem.quantity <= 0.25 || !cartItem.isAvailable}
                   onClick={() =>
                     updateCart({

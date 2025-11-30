@@ -98,7 +98,11 @@ const ConfirmPage = () => {
         <h2 className="text-3xl font-bold mb-4">السلة فارغة!</h2>
         <p className="text-muted-foreground mb-4 text-xl">أضف منتجات أولاً</p>
         <Link to="/products">
-          <Button size="lg" className="font-bold text-lg">
+          <Button
+            aria-label="Go to products page"
+            size="lg"
+            className="font-bold text-lg"
+          >
             <ShoppingBag className="w-5 h-5" /> تصفح المنتجات
           </Button>
         </Link>
@@ -194,6 +198,7 @@ const ConfirmPage = () => {
               <div className="w-full flex justify-end">
                 <Button
                   type="button"
+                  aria-label="Confirm order"
                   className="w-full md:w-40 font-semibold"
                   onClick={() => setIsOpen(true)}
                   disabled={isDisabled}

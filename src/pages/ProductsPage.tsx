@@ -125,11 +125,10 @@ const Products = () => {
                 {categoryButtons.map((cat, index) => (
                   <Button
                     key={index}
-                    // Use default style if category is selected, outline otherwise
                     variant={
                       categoryFilter === cat.value ? "default" : "outline"
                     }
-                    // Update URL params with selected category
+                    aria-label="Category button"
                     onClick={() =>
                       setSearchParams({
                         category: cat.value,

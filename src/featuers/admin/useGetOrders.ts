@@ -16,7 +16,7 @@ const useGetOrders = (page = 1, filter = "all") => {
 
       return res?.data?.orders;
     },
-    refetchInterval: 5 * 60 * 1000, // كل 5 دقائق
+    // refetchInterval: 5 * 60 * 1000, // كل 5 دقائق
   });
 
   return { orders, isPending };

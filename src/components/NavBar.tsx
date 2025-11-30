@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, Menu, X, Package, Loader } from "lucide-react";
 import { Button } from "./ui/button";
 import type { Order } from "@/types";
-// import useUser from "../featuers/admin/useUser";
 import useGetCart from "../featuers/cart/useGetCart";
 import useGetAllOrdersByUser from "../featuers/orders/useGetAllOrdersByUser";
 import AllOrdersByUser from "../featuers/orders/AllOrdersByUser";
@@ -23,10 +22,6 @@ export const Navbar = () => {
   const orders: Order[] = getAllOrdersByUser?.data?.data ?? [];
   const hasOrders = orders?.length > 0;
 
-  // Is User?
-  // const { user } = useUser();
-  // const isUser = user ? "/dashboard" : "/login";
-
   // Location
   const location = useLocation();
 
@@ -44,6 +39,7 @@ export const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-4">
             <Link
+              aria-label="Go to products page"
               to="/products"
               className={`${
                 location.pathname === "/products"
@@ -53,16 +49,6 @@ export const Navbar = () => {
             >
               المنتجات
             </Link>
-            {/* <Link
-              to={isUser}
-              className={`${
-                location.pathname === isUser
-                  ? "text-primary"
-                  : "text-foreground"
-              } hover:text-primary transition-smooth font-semibold hidden`}
-            >
-              لوحة التحكم
-            </Link> */}
             <Button
               variant="outline"
               onClick={() => hasOrders && setIsDrawerOpen(true)}
@@ -79,7 +65,7 @@ export const Navbar = () => {
               )}
             </Button>
 
-            <Link to="/confirm">
+            <Link to="/confirm" aria-label={`Go to cart, ${totalItems} items`}>
               <Button variant="outline" className="relative gap-2">
                 <ShoppingCart className="w-5 h-5" />
                 {totalItems > 0 && (
@@ -93,7 +79,7 @@ export const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-3">
-            <Link to="/confirm">
+            <Link to="/confirm" aria-label={`Go to cart, ${totalItems} items`}>
               <Button variant="outline" size="icon" className="relative">
                 <ShoppingCart className="w-5 h-5" />
                 {totalItems > 0 && (
@@ -123,20 +109,15 @@ export const Navbar = () => {
           <div className="md:hidden fixed inset-x-0 top-[65px] bg-background border-t border-border shadow-md p-4 flex flex-col gap-3 animate-slideDown">
             <Link
               to="/products"
+              aria-label="Go to products page"
               className="text-foreground hover:text-primary transition-smooth font-semibold py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               المنتجات
             </Link>
-            {/* <Link
-              to="/dashboard"
-              className="text-foreground hover:text-primary transition-smooth font-semibold py-2 hidden"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              لوحة التحكم
-            </Link> */}
             <Button
               variant="outline"
+              aria-label="My orders"
               onClick={() => {
                 setIsDrawerOpen(true);
                 setMobileMenuOpen(false);
