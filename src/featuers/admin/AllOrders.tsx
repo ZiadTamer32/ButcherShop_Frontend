@@ -25,7 +25,7 @@ const AllOrders = () => {
   const [categoryFilter, setCategoryFilter] = useState<string>(
     searchParams.get("category") || "all"
   );
-  const { orders, isPending } = useGetOrders(page, categoryFilter);
+  const { orders, isPending } = useGetOrders(page, categoryFilter, 10);
 
   const categoryArray = [
     { value: "all", label: "الكل" },
@@ -41,6 +41,7 @@ const AllOrders = () => {
       tab: "orders",
       category: categoryFilter,
       page: (page + 1).toString(),
+      duration: searchParams.get("duration") || "month",
     });
   };
   const handlePrevPage = () => {
@@ -50,12 +51,18 @@ const AllOrders = () => {
       tab: "orders",
       category: categoryFilter,
       page: (page - 1).toString(),
+      duration: searchParams.get("duration") || "month",
     });
   };
   const handleSelectCategory = (value: string) => {
     setCategoryFilter(value);
     setPage(1);
-    setSearchParams({ tab: "orders", category: value, page: "1" });
+    setSearchParams({
+      tab: "orders",
+      category: value,
+      page: "1",
+      duration: searchParams.get("duration") || "month",
+    });
   };
 
   if (isPending) {

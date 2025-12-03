@@ -29,7 +29,12 @@ const DashboardPage = () => {
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
-    setSearchParams({ tab: value });
+    setSearchParams({
+      tab: value,
+      page: searchParams.get("page") || "1",
+      duration: searchParams.get("duration") || "month",
+      category: searchParams.get("category") || "all",
+    });
   };
 
   if (isPending) {
@@ -48,7 +53,7 @@ const DashboardPage = () => {
           <h1 className="text-2xl sm:text-4xl font-bold text-foreground mb-2">
             لوحة التحكم
           </h1>
-          <p className="text-muted-foreground text-sm sm:text-lg">
+          <p className="text-muted-foreground text-xs sm:text-lg">
             إدارة ومتابعة جميع الطلبات والمنتجات
           </p>
         </div>
@@ -71,6 +76,7 @@ const DashboardPage = () => {
         </Button>
       </div>
       {/* Stats */}
+
       <Stats />
       {/* Tabs */}
       <div
