@@ -6,13 +6,7 @@ import DeleteButton from "../../components/DeleteButton";
 import useGetCart from "./useGetCart";
 import useUpdateCart from "./useUpdateCart";
 
-const Cart = ({
-  orderPrice,
-  delivieryPrice,
-}: {
-  orderPrice: number;
-  delivieryPrice: number;
-}) => {
+const Cart = ({ orderPrice }: { orderPrice: number }) => {
   const { getCart } = useGetCart();
   const { updateCart } = useUpdateCart();
 
@@ -81,12 +75,12 @@ const Cart = ({
         {/* إجمالي السعر */}
         <div className="border-t pt-2 mt-2">
           <p className="text-sm font-light text-gray-500 mb-2">
-            خدمة التوصيل: {delivieryPrice} جنيه
+            خدمة التوصيل: تحدد حسب المكان تليفونياً
           </p>
           <p className="text-lg font-semibold">
             الإجمالي الكلي:
             <span className="text-primary font-bold ms-2">
-              {orderPrice + (delivieryPrice || 0)} جنيه
+              {orderPrice || 0} جنيه
             </span>
           </p>
         </div>

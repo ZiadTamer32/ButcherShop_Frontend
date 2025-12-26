@@ -43,7 +43,7 @@ export interface Order {
   additionalInfo: string;
   orderItem: OrderItem[];
   orderPrice: number;
-  delivieryPrice: number;
+  delivieryPrice?: number;
   totalPrice: number;
   createdAt?: string;
 }

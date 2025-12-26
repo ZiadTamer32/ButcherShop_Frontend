@@ -109,16 +109,25 @@ const Home = () => {
             <p className="text-lg text-muted-foreground mb-8">
               نحن هنا لخدمتكم. تواصل معنا للاستفسار أو الطلب
             </p>
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="gradient-card p-6 rounded-xl shadow-soft">
+            <div className="grid md:grid-cols-3 gap-6 mb-8 items-stretch">
+              <div className="gradient-card p-6 rounded-xl shadow-soft flex flex-col justify-between">
                 <h3 className="text-xl font-bold text-foreground mb-2">
-                  الهاتف
+                  للإتصال
                 </h3>
                 <p className="text-muted-foreground" dir="ltr">
-                  02 24314840
+                  24314840
+                </p>
+                <p className="text-muted-foreground" dir="ltr">
+                  01125334060
+                </p>
+                <p className="text-muted-foreground" dir="ltr">
+                  01220666215
+                </p>
+                <p className="text-muted-foreground" dir="ltr">
+                  01227928260
                 </p>
               </div>
-              <div className="gradient-card p-6 rounded-xl shadow-soft">
+              <div className="gradient-card p-6 rounded-xl shadow-soft flex flex-col justify-center">
                 <h3 className="text-xl font-bold text-foreground mb-2">
                   البريد الإلكتروني
                 </h3>
@@ -130,7 +139,7 @@ const Home = () => {
                   alhadadbutcher@gmail.com
                 </Link>
               </div>
-              <div className="gradient-card p-6 rounded-xl shadow-soft">
+              <div className="gradient-card p-6 rounded-xl shadow-soft flex flex-col justify-center">
                 <h3 className="text-xl font-bold text-foreground mb-2">
                   العنوان
                 </h3>

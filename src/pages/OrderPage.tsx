@@ -91,9 +91,9 @@ const OrderPage = () => {
             </div>
             <div className="flex justify-between items-center">
               <span className="font-semibold">مصاريف التوصيل:</span>
-              <span className="font-bold text-primary">
+              {/* <span className="font-bold text-primary">
                 {specificOrder.delivieryPrice ?? 0} ج.م
-              </span>
+              </span> */}
             </div>
 
             <div className="flex justify-between items-center">

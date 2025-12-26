@@ -39,7 +39,7 @@ const ConfirmPage = () => {
   const { getCart, isGetting } = useGetCart();
   const { createOrder, isCreating } = useCreateOrder();
 
-  const selectedZone = watch("zone");
+  // const selectedZone = watch("zone");
 
   // Disable Button
   const formValues = watch();
@@ -56,12 +56,12 @@ const ConfirmPage = () => {
     [getCart]
   );
 
-  const delivieryPrice = useMemo(
-    () => zonesWithPrices.find((z) => z.label === selectedZone)?.price ?? 0,
-    [selectedZone]
-  );
+  // const delivieryPrice = useMemo(
+  //   () => zonesWithPrices.find((z) => z.label === selectedZone)?.price ?? 0,
+  //   [selectedZone]
+  // );
 
-  const totalPrice = orderPrice + delivieryPrice;
+  const totalPrice = orderPrice + 0;
 
   const productData = useMemo(
     () =>
@@ -77,8 +77,8 @@ const ConfirmPage = () => {
     const orderData: Order = {
       ...data,
       orderItem: productData,
+      delivieryPrice: 0,
       orderPrice,
-      delivieryPrice,
       totalPrice,
     };
 
@@ -116,7 +116,7 @@ const ConfirmPage = () => {
         <h1 className="text-3xl font-bold mb-4">تأكيد الطلب</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-4">
-          <Cart orderPrice={orderPrice} delivieryPrice={delivieryPrice} />
+          <Cart orderPrice={orderPrice} />
 
           <div className="bg-white p-4 rounded-lg shadow-md border">
             <h2 className="text-lg font-semibold mb-2 pb-2 border-b">

@@ -225,19 +225,19 @@ const AllOrders = () => {
                   )}`}
                 </div>
 
-                <div className="text-right space-y-1">
-                  <div>
+                {/* <div className="text-right space-y-1"> */}
+                {/* <div>
                     <span className="font-semibold">مصاريف التوصيل:</span>{" "}
                     <span className="font-bold text-primary">
                       {order.delivieryPrice} ج.م
                     </span>
-                  </div>
+                  </div> */}
 
-                  <div className="text-2xl font-bold">
-                    <span className="text-foreground">المجموع:</span>{" "}
-                    <span className="text-primary">{order.totalPrice} ج.م</span>
-                  </div>
+                <div className="text-2xl font-bold">
+                  <span className="text-foreground">المجموع:</span>{" "}
+                  <span className="text-primary">{order.totalPrice} ج.م</span>
                 </div>
+                {/* </div> */}
               </div>
             </div>
           ))}
