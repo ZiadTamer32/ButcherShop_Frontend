@@ -5,7 +5,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { CheckCircle, Info, XCircle } from "lucide-react";
 import Applayout from "./components/Applayout";
-import IsOpen from "./components/IsOpen";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
@@ -31,33 +30,12 @@ function App() {
         <Routes>
           <Route element={<Applayout />}>
             <Route path="/" element={<HomePage />} />
-            <Route
-              path="/products"
-              element={
-                <IsOpen>
-                  <ProductsPage />
-                </IsOpen>
-              }
-            />
+            <Route path="/products" element={<ProductsPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/confirm"
-              element={
-                <IsOpen>
-                  <ConfirmPage />
-                </IsOpen>
-              }
-            />
+            <Route path="/confirm" element={<ConfirmPage />} />
             <Route path="/order/:orderId" element={<OrderPage />} />
-            <Route
-              path="/thankyou"
-              element={
-                <IsOpen>
-                  <ThankyouPage />
-                </IsOpen>
-              }
-            />
+            <Route path="/thankyou" element={<ThankyouPage />} />
             <Route path="/*" element={<NotFoundPage />} />
           </Route>
         </Routes>

@@ -1,6 +1,7 @@
 import { sliceText } from "../lib/utils";
 import type { ProductCardProps } from "../types";
 import { Button } from "./ui/button";
+import { Tooltip } from "./ui/tooltip";
 import {
   ChevronDown,
   ChevronUp,
@@ -20,6 +21,7 @@ const MobileCard = ({
   isLongDescription,
   setShowMore,
   showMore,
+  isOpen,
 }: ProductCardProps) => {
   return (
     <>
@@ -119,18 +121,26 @@ const MobileCard = ({
         </div>
       </div>
 
-      <Button
-        size="sm"
-        aria-label="Add to cart"
-        onClick={handleAddToCart}
-        disabled={
-          quantity <= 0 || !product.isAvailable || quantity > maxQuantity
-        }
-        className="text-xs w-full sm:hidden mt-2"
+      <Tooltip
+        content="المحل مغلق حالياً. ساعات العمل من 9 صباحاً حتى 6 مساءً"
+        show={!isOpen}
       >
-        <ShoppingCart className="w-4 h-4" />
-        إضافة إلي السلة
-      </Button>
+        <Button
+          size="sm"
+          aria-label="Add to cart"
+          onClick={handleAddToCart}
+          disabled={
+            quantity <= 0 ||
+            !product.isAvailable ||
+            quantity > maxQuantity ||
+            !isOpen
+          }
+          className="text-xs w-full sm:hidden mt-2"
+        >
+          <ShoppingCart className="w-4 h-4" />
+          إضافة إلي السلة
+        </Button>
+      </Tooltip>
     </>
   );
 };

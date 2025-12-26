@@ -41,10 +41,14 @@ const ConfirmPage = () => {
 
   // const selectedZone = watch("zone");
 
+  const currentHour = new Date().getHours();
+  const isAvailable = currentHour >= 9 && currentHour <= 18;
+
   // Disable Button
   const formValues = watch();
   const { additionalInfo, ...requiredFields } = formValues;
-  const isDisabled = Object.values(requiredFields).some((ele) => !ele);
+  const isDisabled =
+    Object.values(requiredFields).some((ele) => !ele) || !isAvailable;
 
   const orderPrice = useMemo(
     () =>
@@ -205,7 +209,6 @@ const ConfirmPage = () => {
                 >
                   تأكيد الطلب
                 </Button>
-
                 <ConfirmButton
                   isOpen={isOpen}
                   isCreating={isCreating}

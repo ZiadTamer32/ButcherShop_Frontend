@@ -59,4 +59,5 @@ export interface ProductCardProps {
   maxQuantity: number;
   showMore: boolean;
   isLongDescription: boolean;
+  isOpen: boolean;
 }

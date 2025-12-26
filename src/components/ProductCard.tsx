@@ -11,7 +11,8 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
   const [showMore, setShowMore] = useState(false);
   const { addCart } = useAddCart();
   const { getCart } = useGetCart();
-
+  const currentHour = new Date().getHours();
+  const isOpen = currentHour >= 9 && currentHour <= 18;
   const imgUrl = useMemo(
     () => `${import.meta.env.VITE_IMAGE_UPLOAD_PATH}/${product.image}`,
     [product.image]
@@ -53,13 +54,14 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
     isLongDescription,
     setShowMore,
     showMore,
+    isOpen,
   };
 
   return (
     <div
       aria-label={`${product.name} product card`}
       aria-disabled={!product.isAvailable}
-      className={`flex flex-col sm:flex-row gap-5 gradient-card p-4 sm:p-0 rounded-xl overflow-hidden shadow-soft hover:shadow-xl transition-smooth border border-border ${
+      className={`flex flex-col justify-between gradient-card p-4 sm:p-0 rounded-xl overflow-hidden shadow-soft hover:shadow-xl transition-smooth border border-border ${
         product.isAvailable
           ? "cursor-pointer"
           : "cursor-not-allowed bg-slate-50 opacity-50"

@@ -8,6 +8,7 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { Button } from "./ui/button";
+import { Tooltip } from "./ui/tooltip";
 
 const DesktopCard = ({
   product,
@@ -20,9 +21,10 @@ const DesktopCard = ({
   isLongDescription,
   setShowMore,
   showMore,
+  isOpen,
 }: ProductCardProps) => {
   return (
-    <div className="hidden sm:flex w-full flex-col justify-between">
+    <div className="hidden sm:flex w-full flex-col justify-between flex-1">
       <div className="overflow-hidden">
         {product.isAvailable ? (
           <div className="relative overflow-hidden">
@@ -118,17 +120,25 @@ const DesktopCard = ({
             <Minus className="w-4 h-4" />
           </Button>
         </div>
-        <Button
-          onClick={handleAddToCart}
-          aria-label="Add to cart"
-          disabled={
-            quantity <= 0 || !product.isAvailable || quantity > maxQuantity
-          }
-          className="w-full mt-4"
+        <Tooltip
+          content="المحل مغلق حالياً. ساعات العمل من 9 صباحاً حتى 6 مساءً"
+          show={!isOpen}
         >
-          <ShoppingCart className="w-4 h-4" />
-          إضافة للسلة
-        </Button>
+          <Button
+            onClick={handleAddToCart}
+            aria-label="Add to cart"
+            disabled={
+              quantity <= 0 ||
+              !product.isAvailable ||
+              quantity > maxQuantity ||
+              !isOpen
+            }
+            className="w-full mt-4"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            إضافة للسلة
+          </Button>
+        </Tooltip>
       </div>
     </div>
   );
