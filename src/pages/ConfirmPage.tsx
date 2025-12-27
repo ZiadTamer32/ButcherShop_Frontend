@@ -42,7 +42,7 @@ const ConfirmPage = () => {
   // const selectedZone = watch("zone");
 
   const currentHour = new Date().getHours();
-  const isAvailable = currentHour >= 9 && currentHour <= 18;
+  const isAvailable = currentHour >= 9 && currentHour < 18;
 
   // Disable Button
   const formValues = watch();

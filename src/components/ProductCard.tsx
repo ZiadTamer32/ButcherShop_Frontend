@@ -12,7 +12,8 @@ export const ProductCard = ({ product }: { product: CartItemLocalStorage }) => {
   const { addCart } = useAddCart();
   const { getCart } = useGetCart();
   const currentHour = new Date().getHours();
-  const isOpen = currentHour >= 9 && currentHour <= 18;
+  console.log(currentHour);
+  const isOpen = currentHour >= 9 && currentHour < 18;
   const imgUrl = useMemo(
     () => `${import.meta.env.VITE_IMAGE_UPLOAD_PATH}/${product.image}`,
     [product.image]
